@@ -7,7 +7,7 @@ export function Empty() {
 
   useEffect(() => {
     navigate('/');
-  }, []);
+  }, [navigate]);
 
   return <div className={styles.empty}>No results</div>;
 }
