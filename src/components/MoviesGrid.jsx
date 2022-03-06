@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { get } from '../utils/httpClient';
 import MovieCard from './MovieCard';
 import styles from './MoviesGrid.module.css';
-import Spinner from '../components/Spinner';
+import Spinner from './Spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Empty } from './Empty';
 
@@ -17,7 +17,7 @@ const MoviesGrid = ({ search }) => {
     const searchUrl = search
       ? `/search/movie?query=${search}&page=${page}`
       : `/discover/movie?page=${page}`;
-    console.log(searchUrl);
+
     get(searchUrl).then((data) => {
       setMovies((prevMovies) => prevMovies.concat(data.results));
       setHasMore(data.page < data.total_pages);

@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 const Search = () => {
   const [query, setQuery] = useSearchParams();
   const search = query.get('search');
-  console.log('search: ', search);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -16,7 +16,7 @@ const Search = () => {
         <input
           type="text"
           className={styles.searchInput}
-          value={search ?? ''}
+          value={search ?? ' '}
           autoFocus
           placeholder="Movie title"
           aria-label="Search Movies"
