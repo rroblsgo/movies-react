@@ -1,13 +1,11 @@
 import styles from './Search.module.css';
 import { FaSearch } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom';
-import { useQuery } from '../hooks/useQuery';
+import { useSearchParams } from 'react-router-dom';
 
 const Search = () => {
-  const query = useQuery();
+  const [query, setQuery] = useSearchParams();
   const search = query.get('search');
-  const history = useHistory();
-
+  console.log('search: ', search);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -18,17 +16,17 @@ const Search = () => {
         <input
           type="text"
           className={styles.searchInput}
-          value={search}
+          value={search ?? ''}
+          autoFocus
           placeholder="Movie title"
           aria-label="Search Movies"
           onChange={(e) => {
             const value = e.target.value;
-            history.push(`/?search=${value}`);
+            setQuery({ search: value });
+            // navigate(`/?search=${value}`);
           }}
         />
-        <button type="submit" className={styles.searchButton}>
-          <FaSearch size={20} />
-        </button>
+        <FaSearch size={20} color="black" className={styles.searchButton} />
       </div>
     </form>
   );
